@@ -127,7 +127,13 @@ class Program
                             return; 
 
                     }
-                    
+                    for (int i = 0; i < currentLine; ++i)
+                    {
+                        if (reader.ReadLine() == null) break;
+                    }
+
+                    currentLine++;
+
                     Console.WriteLine($"Processing line: {line}");
                     
 
