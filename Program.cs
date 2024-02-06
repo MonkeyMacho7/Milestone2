@@ -37,6 +37,7 @@ class Program
             using (StreamReader reader = new StreamReader(filePath))
             {
                 string line;
+                int currentLine = 0;
                 while ((line = reader.ReadLine()) != null)
                 {
                     int instruction = Convert.ToInt32(line.Substring(0,3));
@@ -68,30 +69,57 @@ class Program
 
                         case 30: 
                             Console.WriteLine("Add operation");
+                            accumulator += memory[operand];
+                            Console.WriteLine($"Added {memory[operand]} to the accumulator. New accumulator value: {accumulator}");
                             break;
 
                         case 31: 
                             Console.WriteLine("Subtract operation");
+                            accumulator -= memory[operand];
+                            Console.WriteLine($"Subtracted {memory[operand]} from the accumulator. New accumulator value: {accumulator}");
                             break;
 
                         case 32: 
                             Console.WriteLine("Divide operation");
+                            if (memory[operand] == 0)
+                            {
+                                Console.WriteLine("Divide by zero error.");
+                            }
+                            else
+                            {
+                                accumulator /= memory[operand];
+                                Console.WriteLine($"Divided accumulator by {memory[operand]}. New accumulator value: {accumulator}");
+                            }
                             break;
 
                         case 33: 
                             Console.WriteLine("Multiply operation");
+                            accumulator *= memory[operand];
+                            Console.WriteLine($"Multiplied accumulator by {memory[operand]}. New accumulator value: {accumulator}");
                             break;
 
                         case 40: 
                             Console.WriteLine("Branch operation");
+                            currentLine = operand - 1; 
+                            Console.WriteLine($"Branching to line {operand}.");
                             break;
 
                         case 41: 
                             Console.WriteLine("Branch if negative operation");
+                            if (accumulator < 0)
+                            {
+                                currentLine = operand - 1; // Adjust for zero-based indexing
+                                Console.WriteLine($"Branching to line {operand} due to negative accumulator.");
+                            }
                             break;
 
                         case 42: 
                             Console.WriteLine("Branch if zero operation");
+                            if (accumulator == 0)
+                            {
+                                currentLine = operand - 1; // Adjust for zero-based indexing
+                                Console.WriteLine($"Branching to line {operand} due to zero accumulator.");
+                            }
                             break;
 
                         case 43: 
@@ -99,9 +127,9 @@ class Program
                             return; 
 
                     }
-                    // Process each line as needed
+                    
                     Console.WriteLine($"Processing line: {line}");
-                    // Add your logic here to process the line
+                    
 
                 }
             }
