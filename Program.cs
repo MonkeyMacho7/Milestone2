@@ -8,8 +8,17 @@ class Program
     public static int accumulator = 0;
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter the path to the file:");
-        string filePath = Console.ReadLine();
+        string filePath = string.Empty;
+
+        if (args.Length > 0)
+        {
+            filePath = args[0];
+        }
+        else
+        {
+            Console.WriteLine("Enter the path to the file:");
+            filePath = Console.ReadLine();
+        }
 
         if (File.Exists(filePath))
         {
