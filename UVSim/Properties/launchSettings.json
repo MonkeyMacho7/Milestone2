@@ -2,7 +2,7 @@
   "profiles": {
     "UVSim": {
       "commandName": "Project",
-      "commandLineArgs": "c:\\temp\\test2.txt\r\n"
+      "commandLineArgs": "c:\\temp\\test1.txt\r\n"
     }
   }
 }
