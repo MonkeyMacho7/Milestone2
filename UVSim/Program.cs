@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-class Program
+public class Program
 {
     public static string[] instructions = new string[100];
     public static int[] memory = new int[100];
@@ -32,7 +32,7 @@ class Program
         }
     }
 
-    static void ReadFile(string filePath)
+    public static void ReadFile(string filePath)
     {
         try
         {
@@ -56,7 +56,7 @@ class Program
         }
     }
 
-    static void ProcessInstructions()
+    public static void ProcessInstructions()
     {
         try
         {
@@ -80,8 +80,12 @@ class Program
         return;
     }
 
-    static int BasicML(int current, int operation, int operand)
+    public static int BasicML(int current, int operation, int operand)
     {
+        if (operand < 0 || operand >= memory.Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(operand), "Memory location is out of range.");
+        }
         switch (operation)
         {
             case 10:
