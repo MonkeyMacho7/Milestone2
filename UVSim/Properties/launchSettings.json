@@ -1,8 +1,7 @@
 {
   "profiles": {
     "UVSim": {
-      "commandName": "Project",
-      "commandLineArgs": "c:\\temp\\test1.txt\r\n"
+      "commandName": "Project"
     }
   }
 }
