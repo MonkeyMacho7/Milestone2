@@ -25,6 +25,25 @@ namespace UVSim.Tests
                 Assert.Fail($"File read failed with error: {ex.Message}");
             }
         }
+        [TestMethod]
+        public void TestReadFileFail()
+        {
+            // Arrange
+            string filePath = @"c:/temp/nonexistentfile.txt"; 
+
+            // Act & Assert
+            try
+            {
+                string content = File.ReadAllText(filePath);
+                Assert.Fail("Expected an IOException due to a non-existent file, but no exception was thrown.");
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"Expected failure: {ex.Message}");
+                
+                Assert.IsTrue(ex.Message.Contains("could not be found"), "The error message should state that the file could not be found.");
+            }
+        }
     }
 
 
@@ -60,16 +79,16 @@ namespace UVSim.Tests
         public void TestReadWithValidInput()
         {
             // Arrange
-            var originalInput = Console.In; // Preserve the original input stream
-            var simulatedInput = new StringReader("1234\n"); // Simulated user input
+            var originalInput = Console.In; 
+            var simulatedInput = new StringReader("1234\n"); 
             Console.SetIn(simulatedInput);
-            int memoryLocation = 10; // Example memory location
+            int memoryLocation = 10; 
 
             // Act
-            Program.BasicML(0, 10, memoryLocation); // Execute READ operation
+            Program.BasicML(0, 10, memoryLocation); 
 
             // Cleanup
-            Console.SetIn(originalInput); // Restore original input stream
+            Console.SetIn(originalInput); 
 
             // Assert
             Assert.AreEqual(1234, Program.memory[memoryLocation], "The value 1234 should be stored at the specified memory location.");
@@ -122,6 +141,16 @@ namespace UVSim.Tests
 
             // Assert
             Assert.AreEqual(expectedValue, Program.accumulator, "The accumulator should have the value from the specified memory location.");
+        }
+        [TestMethod]
+        public void TestLoadOperation_InvalidMemoryLocation()
+        {
+            // Arrange
+            int invalidMemoryLocation = 999; // Assuming this is out of range
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+                Program.BasicML(0, 20, invalidMemoryLocation));
         }
     }
 
