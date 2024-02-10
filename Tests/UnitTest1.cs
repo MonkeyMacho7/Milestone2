@@ -182,7 +182,7 @@ namespace UVSim.Tests
             Program.accumulator = valueToStore; // Set the accumulator with value to store
 
             // Act
-            Program.BasicML(0, 21, memoryLocation); // Execute STORE operation (assuming the operation code for STORE is 21)
+            Program.BasicML(0, 21, memoryLocation); // Execute STORE operation
 
             // Assert
             Assert.AreEqual(valueToStore, Program.memory[memoryLocation], "The memory location should have the value from the accumulator.");
@@ -213,7 +213,7 @@ namespace UVSim.Tests
             Program.accumulator = initialValueInAccumulator;
 
             // Act
-            Program.BasicML(0, 30, memoryLocation); // Execute ADD operation (assuming the operation code for ADD is 30)
+            Program.BasicML(0, 30, memoryLocation); // Execute ADD operation 
 
             // Assert
             int expectedAccumulatorValue = initialValueInAccumulator + valueInMemory;
@@ -260,4 +260,143 @@ namespace UVSim.Tests
                 Program.BasicML(0, 31, invalidMemoryLocation));
         }
     }
+    [TestClass]
+    public class DivideOperationTests
+    {
+        [TestMethod]
+        public void TestDivideOperation_Success()
+        {
+            // Arrange
+            int memoryLocation = 10;
+            Program.memory[memoryLocation] = 200; // Divider value
+            Program.accumulator = 400; // Initial accumulator value
+
+            // Act
+            Program.BasicML(0, 32, memoryLocation); // Execute DIVIDE operation
+
+            // Assert
+            Assert.AreEqual(2, Program.accumulator, "Accumulator should have the correct division result.");
+        }
+        [TestMethod]
+        public void TestDivideOperation_DivideByZero()
+        {
+            // Arrange
+            int memoryLocation = 10;
+            Program.memory[memoryLocation] = 0; // Divider value set to zero
+            Program.accumulator = 400; // Any initial value
+
+            // Act & Assert
+            Assert.ThrowsException<DivideByZeroException>(() =>
+                Program.BasicML(0, 32, memoryLocation));
+        }
+    }
+    [TestClass]
+    public class MultiplyOperationTests
+    {
+        [TestMethod]
+        public void TestMultiplyOperation_Success()
+        {
+            // Arrange
+            int memoryLocation = 10;
+            Program.memory[memoryLocation] = 5; // Value to multiply
+            Program.accumulator = 4; // Initial accumulator value
+
+            // Act
+            Program.BasicML(0, 33, memoryLocation); // Execute MULTIPLY operation
+
+            // Assert
+            Assert.AreEqual(20, Program.accumulator, "Accumulator should have the correct multiplication result.");
+        }
+        [TestMethod]
+        public void TestMultiplyOperation_InvalidMemoryLocation()
+        {
+            // Arrange
+            int invalidMemoryLocation = 999; // Out of range location
+            Program.accumulator = 4; // Any initial value
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+                Program.BasicML(0, 33, invalidMemoryLocation));
+        }
+    }
+    [TestClass]
+    public class BranchNegOperationTests
+    {
+        [TestMethod]
+        public void TestBranchNegOperation_WithNegativeAccumulator()
+        {
+            // Arrange
+            int branchLocation = 10; // Memory location to branch to
+            Program.accumulator = -5; // Negative accumulator value
+
+            // Act
+            int nextInstruction = Program.BasicML(0, 41, branchLocation);
+
+            // Assert
+            Assert.AreEqual(branchLocation, nextInstruction, "Program should branch to the specified memory location.");
+        }
+        [TestMethod]
+        public void TestBranchNegOperation_WithNonNegativeAccumulator()
+        {
+            // Arrange
+            int branchLocation = 10; // Memory location to branch to
+            int currentInstruction = 0; // Current instruction index
+            Program.accumulator = 5; // Non-negative accumulator value
+
+            // Act
+            int nextInstruction = Program.BasicML(currentInstruction, 41, branchLocation);
+
+            // Assert
+            Assert.AreEqual(currentInstruction + 1, nextInstruction, "Program should not branch and proceed to the next instruction.");
+        }
+    }
+    [TestClass]
+    public class BranchZeroOperationTests
+    {
+        [TestMethod]
+        public void TestBranchZeroOperation_WithZeroAccumulator()
+        {
+            // Arrange
+            int branchLocation = 10; // Memory location to branch to
+            Program.accumulator = 0; // Accumulator value set to zero
+
+            // Act
+            int nextInstruction = Program.BasicML(0, 42, branchLocation);
+
+            // Assert
+            Assert.AreEqual(branchLocation, nextInstruction, "Program should branch to the specified memory location when accumulator is zero.");
+        }
+        [TestMethod]
+        public void TestBranchZeroOperation_WithNonZeroAccumulator()
+        {
+            // Arrange
+            int branchLocation = 10; // Memory location to branch to
+            int currentInstruction = 0; // Current instruction index
+            Program.accumulator = 5; // Non-zero accumulator value
+
+            // Act
+            int nextInstruction = Program.BasicML(currentInstruction, 42, branchLocation);
+
+            // Assert
+            Assert.AreEqual(currentInstruction + 1, nextInstruction, "Program should not branch and proceed to the next instruction when accumulator is non-zero.");
+        }
+    }
+    [TestClass]
+    public class HaltOperationTests
+    {
+        [TestMethod]
+        public void TestHaltOperation()
+        {
+            // Arrange
+            // Set up any necessary initial conditions
+
+            // Act
+            int result = Program.BasicML(0, 43, 0); // Execute HALT operation
+
+            // Assert
+            Assert.AreEqual(-1, result, "The result should indicate that the program has halted.");
+        }
+    }
+
+
 }
