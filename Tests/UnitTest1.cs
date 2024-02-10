@@ -29,7 +29,7 @@ namespace UVSim.Tests
         public void TestReadFileFail()
         {
             // Arrange
-            string filePath = @"c:/temp/nonexistentfile.txt"; 
+            string filePath = @"c:/temp/NOFILEHEREMUAHAHA.txt"; 
 
             // Act & Assert
             try
@@ -121,6 +121,22 @@ namespace UVSim.Tests
             // Assert
             var output = writer.ToString();
             Assert.IsTrue(output.Contains(expectedValue.ToString()), "The output should contain the value from the specified memory location.");
+        }
+        [TestMethod]
+        public void TestWriteOperation_InvalidMemoryLocation()
+        {
+            // Arrange
+            int invalidMemoryLocation = 999; // Assuming this is out of range
+            var originalOutput = Console.Out; // Preserve the original output stream
+            using var writer = new StringWriter();
+            Console.SetOut(writer); // Redirect console output to the StringWriter
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+                Program.BasicML(0, 11, invalidMemoryLocation));
+
+            // Cleanup
+            Console.SetOut(originalOutput); // Restore original output stream
         }
     }
 
@@ -214,6 +230,34 @@ namespace UVSim.Tests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Program.BasicML(0, 30, invalidMemoryLocation));
         }
     }
+    [TestClass]
+    public class SubtractOperationTests
+    {
+        [TestMethod]
+        public void TestSubtractOperation_Success()
+        {
+            // Arrange
+            int memoryLocation = 10;
+            Program.memory[memoryLocation] = 200; // Value to subtract
+            Program.accumulator = 500; // Initial accumulator value
 
-  
+            // Act
+            Program.BasicML(0, 31, memoryLocation); // Execute SUBTRACT operation
+
+            // Assert
+            Assert.AreEqual(300, Program.accumulator, "Accumulator should have the correct difference after subtraction.");
+        }
+
+        [TestMethod]
+        public void TestSubtractOperation_InvalidMemoryLocation()
+        {
+            // Arrange
+            int invalidMemoryLocation = 999; // Out of range location
+            Program.accumulator = 500; // Any initial value
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+                Program.BasicML(0, 31, invalidMemoryLocation));
+        }
+    }
 }
