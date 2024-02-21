@@ -28,18 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            openFileDialog1 = new OpenFileDialog();
             SuspendLayout();
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.Title = "OPEN";
+            openFileDialog1.FileOk += openFileDialog1_FileOk;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(17F, 41F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1635, 975);
+            ClientSize = new Size(673, 357);
+            Margin = new Padding(1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
         }
 
         #endregion
+        private OpenFileDialog openFileDialog1;
     }
 }
