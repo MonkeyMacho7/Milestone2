@@ -30,15 +30,18 @@
         {
             button1 = new Button();
             openFileDialog1 = new OpenFileDialog();
+            label1 = new Label();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(490, 154);
+            button1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(214, 137);
+            button1.Margin = new Padding(1);
             button1.Name = "button1";
-            button1.Size = new Size(188, 58);
+            button1.Size = new Size(136, 40);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Select a File";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -46,20 +49,35 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(177, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(216, 54);
+            label1.TabIndex = 1;
+            label1.Text = "UVSim GUI";
+            // 
             // Wireframe
             // 
-            AutoScaleDimensions = new SizeF(17F, 41F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1455, 930);
+            BackColor = SystemColors.GradientActiveCaption;
+            ClientSize = new Size(599, 340);
+            Controls.Add(label1);
             Controls.Add(button1);
+            Margin = new Padding(1);
             Name = "Wireframe";
             Text = "Wireframe";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button button1;
         private OpenFileDialog openFileDialog1;
+        private Label label1;
     }
 }
