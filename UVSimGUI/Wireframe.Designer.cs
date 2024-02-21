@@ -31,17 +31,18 @@
             button1 = new Button();
             openFileDialog1 = new OpenFileDialog();
             label1 = new Label();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(214, 137);
+            button1.Location = new Point(150, 137);
             button1.Margin = new Padding(1);
             button1.Name = "button1";
-            button1.Size = new Size(136, 40);
+            button1.Size = new Size(286, 40);
             button1.TabIndex = 0;
-            button1.Text = "Select a File";
+            button1.Text = "Value at Memory Location 9:";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -59,12 +60,23 @@
             label1.TabIndex = 1;
             label1.Text = "UVSim GUI";
             // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(181, 219);
+            button2.Name = "button2";
+            button2.Size = new Size(212, 66);
+            button2.TabIndex = 2;
+            button2.Text = "Close";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // Wireframe
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
             ClientSize = new Size(599, 340);
+            Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button1);
             Margin = new Padding(1);
@@ -79,5 +91,6 @@
         private Button button1;
         private OpenFileDialog openFileDialog1;
         private Label label1;
+        private Button button2;
     }
 }
