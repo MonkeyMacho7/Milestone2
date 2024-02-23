@@ -35,14 +35,12 @@
             btnExit = new Button();
             lblVersion = new Label();
             loadingTimer = new System.Windows.Forms.Timer(components);
-            txtOne = new TextBox();
-            txtTwo = new TextBox();
+            txtInput = new TextBox();
             btnCompute = new Button();
-            lblMemory = new Label();
-            txtValue = new TextBox();
             lblLoading = new Label();
-            lblValue = new Label();
             label1 = new Label();
+            txtStatus = new TextBox();
+            lblInput = new Label();
             SuspendLayout();
             // 
             // btnOpenFile
@@ -97,55 +95,25 @@
             loadingTimer.Interval = 2000;
             loadingTimer.Tick += LoadingTimer_Tick;
             // 
-            // txtOne
+            // txtInput
             // 
-            txtOne.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtOne.Location = new Point(141, 191);
-            txtOne.Name = "txtOne";
-            txtOne.Size = new Size(167, 34);
-            txtOne.TabIndex = 6;
-            txtOne.TextChanged += txtOne_TextChanged;
-            // 
-            // txtTwo
-            // 
-            txtTwo.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTwo.Location = new Point(445, 191);
-            txtTwo.Name = "txtTwo";
-            txtTwo.Size = new Size(176, 34);
-            txtTwo.TabIndex = 7;
-            txtTwo.TextChanged += txtTwo_TextChanged;
+            txtInput.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            txtInput.Location = new Point(359, 289);
+            txtInput.Name = "txtInput";
+            txtInput.Size = new Size(167, 34);
+            txtInput.TabIndex = 6;
+            txtInput.TextChanged += txtOne_TextChanged;
             // 
             // btnCompute
             // 
             btnCompute.Font = new Font("Segoe UI", 19F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCompute.Location = new Point(256, 284);
+            btnCompute.Location = new Point(256, 340);
             btnCompute.Name = "btnCompute";
-            btnCompute.Size = new Size(216, 75);
+            btnCompute.Size = new Size(216, 54);
             btnCompute.TabIndex = 8;
             btnCompute.Text = "Compute";
             btnCompute.UseVisualStyleBackColor = true;
             btnCompute.Click += btnCompute_Click;
-            // 
-            // lblMemory
-            // 
-            lblMemory.AutoSize = true;
-            lblMemory.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMemory.Location = new Point(139, 122);
-            lblMemory.Name = "lblMemory";
-            lblMemory.Size = new Size(333, 37);
-            lblMemory.TabIndex = 9;
-            lblMemory.Text = "Value at Memory Location:";
-            lblMemory.Click += lblMemory_Click;
-            // 
-            // txtValue
-            // 
-            txtValue.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            txtValue.Location = new Point(478, 122);
-            txtValue.Name = "txtValue";
-            txtValue.Size = new Size(77, 43);
-            txtValue.TabIndex = 10;
-            txtValue.Text = "Value";
-            txtValue.TextChanged += txtValue_TextChanged;
             // 
             // lblLoading
             // 
@@ -158,16 +126,6 @@
             lblLoading.Text = "Loading...";
             lblLoading.Click += lblLoading_Click;
             // 
-            // lblValue
-            // 
-            lblValue.AutoSize = true;
-            lblValue.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            lblValue.Location = new Point(225, 123);
-            lblValue.Name = "lblValue";
-            lblValue.Size = new Size(272, 54);
-            lblValue.TabIndex = 12;
-            lblValue.Text = "Enter 2 Values";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -178,24 +136,40 @@
             label1.Text = "Ethan Larson, Sony Smith, Brock Terry";
             label1.Click += label1_Click;
             // 
+            // txtStatus
+            // 
+            txtStatus.Location = new Point(37, 113);
+            txtStatus.Multiline = true;
+            txtStatus.Name = "txtStatus";
+            txtStatus.Size = new Size(671, 170);
+            txtStatus.TabIndex = 14;
+            // 
+            // lblInput
+            // 
+            lblInput.AutoSize = true;
+            lblInput.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            lblInput.Location = new Point(76, 295);
+            lblInput.Name = "lblInput";
+            lblInput.Size = new Size(277, 25);
+            lblInput.TabIndex = 15;
+            lblInput.Text = "Input values (comma delimited)";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
             ClientSize = new Size(752, 488);
+            Controls.Add(lblInput);
             Controls.Add(label1);
-            Controls.Add(lblValue);
             Controls.Add(lblLoading);
-            Controls.Add(txtValue);
-            Controls.Add(lblMemory);
             Controls.Add(btnCompute);
-            Controls.Add(txtTwo);
-            Controls.Add(txtOne);
+            Controls.Add(txtInput);
             Controls.Add(lblVersion);
             Controls.Add(btnExit);
             Controls.Add(lblTitle);
             Controls.Add(btnOpenFile);
+            Controls.Add(txtStatus);
             Margin = new Padding(1);
             Name = "MainForm";
             Text = "Wireframe";
@@ -211,13 +185,11 @@
         private Button btnExit;
         private Label lblVersion;
         private System.Windows.Forms.Timer loadingTimer;
-        private TextBox txtOne;
-        private TextBox txtTwo;
+        private TextBox txtInput;
         private Button btnCompute;
-        private Label lblMemory;
-        private TextBox txtValue;
         private Label lblLoading;
-        private Label lblValue;
         private Label label1;
+        private TextBox txtStatus;
+        private Label lblInput;
     }
 }

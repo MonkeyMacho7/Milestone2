@@ -17,12 +17,10 @@ namespace UVSimGUI
         public MainForm()
         {
             InitializeComponent();
-            txtOne.Visible = false;
-            txtTwo.Visible = false;
+            txtStatus.Visible = false;
+            txtInput.Visible = false;
             btnCompute.Visible = false;
-            lblMemory.Visible = false;
-            txtValue.Visible = false;
-            lblValue.Visible = false;
+            lblInput.Visible = false;
             // Initialize the timer
             loadingTimer = new System.Windows.Forms.Timer();
             loadingTimer.Interval = 2000; // Set timer for 2 seconds
@@ -55,10 +53,9 @@ namespace UVSimGUI
 
             // Hide the Open File
             btnOpenFile.Visible = false;
-            txtOne.Visible = true;
-            txtTwo.Visible = true;
-            lblValue.Visible = true;
+            txtInput.Visible = true;
             btnCompute.Visible = true;
+            lblInput.Visible = true;
 
         }
         private void lblLoading_Click(object sender, EventArgs e)
