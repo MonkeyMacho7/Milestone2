@@ -10,16 +10,22 @@ using System.Windows.Forms;
 
 namespace UVSimGUI
 {
-    public partial class Wireframe : Form
+    public partial class MainForm : Form
     {
-        public Wireframe()
+        public MainForm()
         {
             InitializeComponent();
+            btnOpenFile.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog(this);
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
