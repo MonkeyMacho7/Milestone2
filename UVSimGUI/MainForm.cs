@@ -53,7 +53,7 @@ namespace UVSimGUI
             // Hide the loading button again
             lblLoading.Visible = false;
 
-            // Hide the Open File
+            // Hide the Open File & Others
             btnOpenFile.Visible = false;
             txtStatus.Visible = true;
             txtInput.Visible = true;
