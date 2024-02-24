@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace UVSimGUI
 {
     public partial class MainForm : Form
     {
         public string filePath = string.Empty;
+        public FileReader fileInstructions;
+        public Instructions processInstructions;
 
         public MainForm()
         {
@@ -37,6 +40,13 @@ namespace UVSimGUI
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 filePath = openFileDialog1.FileName;
+                fileInstructions = new FileReader(filePath);
+                if (fileInstructions.GetInstructions().Count <= 0)
+                {
+                    //problem select a different file
+                    Application.Exit();
+
+                }
                 // File selected, now start the timer and show the loading button
                 lblLoading.Visible = true;
                 loadingTimer.Start();
@@ -61,38 +71,18 @@ namespace UVSimGUI
             btnCompute.Visible = true;
 
         }
-        private void lblLoading_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtOne_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTwo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
-
-        }
-        private void lblMemory_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtValue_TextChanged(object sender, EventArgs e)
-        {
-
+            //check that input text box has enough values
+            var inputCount = fileInstructions.GetInputCount();
+            if (inputCount != txtInput.Text.Split(',').Length)
+            {
+                //there was a problem 
+            }
+            processInstructions = new Instructions(fileInstructions.GetInstructions(), txtInput.Text);
+            var status = processInstructions.Process();
+            txtStatus.Text += status;
         }
         private void btnExit_Click(object sender, EventArgs e)
         {

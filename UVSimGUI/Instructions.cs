@@ -31,19 +31,19 @@ namespace UVSimGUI
             }
         }
 
-        public static string Process()
+        public string Process()
         {
             string status = string.Empty;
             try
             {
-                var current = 0;
-                var next = 0;
+                var current = (int)0;
+                var next = (int)0;
                 foreach (var i in instructions)
                 {
                     //get the operation
-                    var operation = Convert.ToInt32(instructions[current].Substring(0, 2));
+                    var operation = (int)Convert.ToInt32(instructions[current].Substring(0, 2));
                     //get the operand
-                    var operand = Convert.ToInt32(instructions[current].Substring(2, 2));
+                    var operand = (int)Convert.ToInt32(instructions[current].Substring(2, 2));
 
                     //call the BasicML processor
                     status += BasicML(current, operation, operand, out next);
@@ -55,7 +55,7 @@ namespace UVSimGUI
             catch (Exception ex) { }
             return status;
         }
-        public static string BasicML(int current, int operation, int operand, out int next)
+        public string BasicML(int current, int operation, int operand, out int next)
         {
             var status = string.Empty;
 

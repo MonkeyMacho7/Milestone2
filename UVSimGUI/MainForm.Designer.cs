@@ -103,7 +103,6 @@
             txtInput.Name = "txtInput";
             txtInput.Size = new Size(167, 34);
             txtInput.TabIndex = 6;
-            txtInput.TextChanged += txtOne_TextChanged;
             // 
             // btnCompute
             // 
@@ -125,7 +124,6 @@
             lblLoading.Size = new Size(258, 72);
             lblLoading.TabIndex = 11;
             lblLoading.Text = "Loading...";
-            lblLoading.Click += lblLoading_Click;
             // 
             // label1
             // 
