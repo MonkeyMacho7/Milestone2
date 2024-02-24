@@ -73,6 +73,7 @@ namespace UVSimGUI
                     break;
 
                 case 11:
+                    status += $"Value at memory location {operand}: {memory[operand]}";
                     Console.WriteLine($"Value at memory location {operand}: {memory[operand]}");
                     break;
 
@@ -95,6 +96,7 @@ namespace UVSimGUI
                 case 32:
                     if (memory[operand] == 0)
                     {
+                        status += "Divide by zero error.";
                         Console.WriteLine("Divide by zero error.");
                         next = -1;
                         return status;
@@ -110,6 +112,7 @@ namespace UVSimGUI
                     break;
 
                 case 40:
+                    status += $"Branching to line {operand}.";
                     Console.WriteLine($"Branching to line {operand}.");
                     next = operand;
                     return status;
@@ -126,6 +129,7 @@ namespace UVSimGUI
                 case 42:
                     if (accumulator == 0)
                     {
+                        status += $"Branching to instruction {operand} due to zero accumulator.";
                         Console.WriteLine($"Branching to instruction {operand} due to zero accumulator.");
                         next = operand;
                         return status;
@@ -133,6 +137,7 @@ namespace UVSimGUI
                     break;
 
                 case 43:
+                    status += "Halt operation";
                     Console.WriteLine("Halt operation");
                     next = 0;
                     return status;

@@ -68,6 +68,7 @@
             lblTitle.Size = new Size(216, 54);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "UVSim GUI";
+            lblTitle.Click += lblTitle_Click;
             // 
             // btnExit
             // 
