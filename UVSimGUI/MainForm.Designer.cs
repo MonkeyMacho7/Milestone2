@@ -68,7 +68,6 @@
             lblTitle.Size = new Size(216, 54);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "UVSim GUI";
-            lblTitle.Click += lblTitle_Click;
             // 
             // btnExit
             // 
@@ -134,7 +133,6 @@
             label1.Size = new Size(205, 15);
             label1.TabIndex = 13;
             label1.Text = "Ethan Larson, Sony Smith, Brock Terry";
-            label1.Click += label1_Click;
             // 
             // txtStatus
             // 

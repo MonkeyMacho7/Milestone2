@@ -89,20 +89,8 @@ namespace UVSimGUI
             txtStatus.Text += status;
 
         }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+       
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtInput_TextChanged(object sender, EventArgs e)
         {
@@ -110,6 +98,10 @@ namespace UVSimGUI
             {
                 btnCompute.Visible = true;
             }
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
