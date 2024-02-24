@@ -19,6 +19,7 @@ namespace UVSimGUI
 
         public MainForm()
         {
+            processInstructions = new Instructions();
             InitializeComponent();
             txtStatus.Visible = false;
             txtInput.Visible = false;
@@ -29,7 +30,6 @@ namespace UVSimGUI
             loadingTimer.Interval = 2000; // Set timer for 2 seconds
             loadingTimer.Tick += new EventHandler(LoadingTimer_Tick);
 
-            // Assuming btnLoading is your loading button
             // Make sure it's initially not visible
             lblLoading.Visible = false;
         }
@@ -78,11 +78,16 @@ namespace UVSimGUI
             var inputCount = fileInstructions.GetInputCount();
             if (inputCount != txtInput.Text.Split(',').Length)
             {
-                //there was a problem 
+                txtStatus.Text += $"***** ERROR Not enough input parameters ****{Environment.NewLine}";
+                btnCompute.Visible = false;
+                txtInput.Focus();
+                return;
             }
-            processInstructions = new Instructions(fileInstructions.GetInstructions(), txtInput.Text);
+            processInstructions.Reset();
+            processInstructions.LoadInsructions(fileInstructions.GetInstructions(), txtInput.Text);
             var status = processInstructions.Process();
             txtStatus.Text += status;
+
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -97,6 +102,14 @@ namespace UVSimGUI
         private void lblTitle_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            if (!btnCompute.Visible)
+            {
+                btnCompute.Visible = true;
+            }
         }
     }
 }

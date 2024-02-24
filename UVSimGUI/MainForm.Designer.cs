@@ -103,6 +103,7 @@
             txtInput.Name = "txtInput";
             txtInput.Size = new Size(167, 34);
             txtInput.TabIndex = 6;
+            txtInput.TextChanged += txtInput_TextChanged;
             // 
             // btnCompute
             // 
@@ -140,6 +141,7 @@
             txtStatus.Location = new Point(37, 113);
             txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
+            txtStatus.ScrollBars = ScrollBars.Vertical;
             txtStatus.Size = new Size(671, 170);
             txtStatus.TabIndex = 14;
             // 
@@ -149,9 +151,9 @@
             lblInput.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             lblInput.Location = new Point(76, 295);
             lblInput.Name = "lblInput";
-            lblInput.Size = new Size(277, 25);
+            lblInput.Size = new Size(282, 25);
             lblInput.TabIndex = 15;
-            lblInput.Text = "Input values (comma delimited)";
+            lblInput.Text = "Input  values (comma delimited)";
             // 
             // MainForm
             // 
