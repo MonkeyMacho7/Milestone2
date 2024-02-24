@@ -12,7 +12,7 @@ namespace UVSimGUI
 {
     public partial class MainForm : Form
     {
-
+        public string filePath = string.Empty;
 
         public MainForm()
         {
@@ -33,8 +33,10 @@ namespace UVSimGUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "Text files (*.txt)|*.txt";
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
+                filePath = openFileDialog1.FileName;
                 // File selected, now start the timer and show the loading button
                 lblLoading.Visible = true;
                 loadingTimer.Start();
@@ -53,9 +55,10 @@ namespace UVSimGUI
 
             // Hide the Open File
             btnOpenFile.Visible = false;
+            txtStatus.Visible = true;
             txtInput.Visible = true;
-            btnCompute.Visible = true;
             lblInput.Visible = true;
+            btnCompute.Visible = true;
 
         }
         private void lblLoading_Click(object sender, EventArgs e)
