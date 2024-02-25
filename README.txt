@@ -1,3 +1,7 @@
 To our valued employer:
-In order to use our GUI to perform the operations of the UVSim, we ask that first off download visual studio and make sure you have c# and win form downloaded as well, that is what we have written this GUI on. We then ask that you transfer over the folder with our code and run the mainform. This will pop up our GUI on your screen and you will be able to start the UVSim. When starting the program, the first button that pops up will be a file browser, we ask that you select our test1 or test2.txt file that we have provided, after loading in the file, you will be able to enter in your values (comma delimeted) do not fear if you type in too many values or too little, an error message will pop up advising you on what to do. We hope you enjoy this GUI and we have appreciated your business!
+In order to use our GUI to perform the operations of the UVSim, we ask that first off download visual studio and make sure you have c# and win form downloaded as well, that is what we have written this GUI on.
+We then ask that you transfer over the folder with our code and run the mainform. This will pop up our GUI on your screen and you will be able to start the UVSim.
+When starting the program, the first button that pops up will be a file browser, we ask that you select our test1 or test2.txt file that we have provided, after loading in the file,
+you will be able to enter in your values (comma delimeted) do not fear if you type in too many values or too little, an error message will pop up advising you on what to do. 
+We hope you enjoy this GUI and we have appreciated your business!
 
