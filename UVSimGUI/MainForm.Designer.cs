@@ -41,6 +41,10 @@
             label1 = new Label();
             txtStatus = new TextBox();
             lblInput = new Label();
+            menuStrip1 = new MenuStrip();
+            colorSettingsToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnOpenFile
@@ -128,7 +132,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(5, 0);
+            label1.Location = new Point(547, 479);
             label1.Name = "label1";
             label1.Size = new Size(205, 15);
             label1.TabIndex = 13;
@@ -142,6 +146,7 @@
             txtStatus.ScrollBars = ScrollBars.Vertical;
             txtStatus.Size = new Size(671, 170);
             txtStatus.TabIndex = 14;
+            txtStatus.TextChanged += txtStatus_TextChanged;
             // 
             // lblInput
             // 
@@ -153,12 +158,37 @@
             lblInput.TabIndex = 15;
             lblInput.Text = "Input  values (comma delimited)";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { colorSettingsToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(752, 24);
+            menuStrip1.TabIndex = 16;
+            menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
+            // 
+            // colorSettingsToolStripMenuItem
+            // 
+            colorSettingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
+            colorSettingsToolStripMenuItem.Name = "colorSettingsToolStripMenuItem";
+            colorSettingsToolStripMenuItem.Size = new Size(61, 20);
+            colorSettingsToolStripMenuItem.Text = "Settings";
+            colorSettingsToolStripMenuItem.Click += colorSettingsToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(142, 22);
+            toolStripMenuItem1.Text = "Color Theme";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(752, 488);
+            BackColor = Color.DarkGreen;
+            ClientSize = new Size(752, 503);
             Controls.Add(lblInput);
             Controls.Add(label1);
             Controls.Add(lblLoading);
@@ -169,9 +199,13 @@
             Controls.Add(lblTitle);
             Controls.Add(btnOpenFile);
             Controls.Add(txtStatus);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Margin = new Padding(1);
             Name = "MainForm";
             Text = "Wireframe";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -190,5 +224,8 @@
         private Label label1;
         private TextBox txtStatus;
         private Label lblInput;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem colorSettingsToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
     }
 }

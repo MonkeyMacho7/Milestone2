@@ -33,7 +33,36 @@ namespace UVSimGUI
             // Make sure it's initially not visible
             lblLoading.Visible = false;
         }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ApplySavedColors();
+        }
 
+        public void ApplySavedColors()
+        {
+            var primaryColor = Properties.Settings.Default.PrimaryColor;
+            var offColor = Properties.Settings.Default.OffColor;
+
+            this.BackColor = primaryColor;
+
+            btnExit.ForeColor = offColor;
+            btnCompute.ForeColor = offColor;
+            btnOpenFile.ForeColor = offColor;
+            txtStatus.ForeColor = offColor; 
+            lblInput.ForeColor = offColor;
+            txtInput.ForeColor = offColor;
+
+
+            menuStrip1.ForeColor = offColor;
+        }
+
+
+        private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.Owner = this; // Set MainForm as the owner
+            settingsForm.ShowDialog();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Text files (*.txt)|*.txt";
@@ -89,7 +118,7 @@ namespace UVSimGUI
             txtStatus.Text += status;
 
         }
-       
+
 
 
         private void txtInput_TextChanged(object sender, EventArgs e)
@@ -102,6 +131,28 @@ namespace UVSimGUI
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void colorSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.Owner = this; // Set MainForm as the owner
+            settingsForm.ShowDialog(); // Show the settings form as a dialog
+        }
+
+        private void txtStatus_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
