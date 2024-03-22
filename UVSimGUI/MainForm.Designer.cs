@@ -48,6 +48,12 @@
             CommandNumberColumn = new DataGridViewTextBoxColumn();
             CommandColumn = new DataGridViewTextBoxColumn();
             btnStartSimulation = new Button();
+            btnCut = new Button();
+            btnCopy = new Button();
+            btnPaste = new Button();
+            btnAddRow = new Button();
+            btnDeleteRow = new Button();
+            btnSaveChanges = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -55,7 +61,7 @@
             // btnOpenFile
             // 
             btnOpenFile.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOpenFile.Location = new Point(256, 123);
+            btnOpenFile.Location = new Point(584, 62);
             btnOpenFile.Margin = new Padding(1);
             btnOpenFile.Name = "btnOpenFile";
             btnOpenFile.Size = new Size(232, 40);
@@ -107,7 +113,7 @@
             // txtInput
             // 
             txtInput.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtInput.Location = new Point(288, 286);
+            txtInput.Location = new Point(404, 287);
             txtInput.Name = "txtInput";
             txtInput.Size = new Size(167, 34);
             txtInput.TabIndex = 6;
@@ -145,7 +151,7 @@
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(37, 113);
+            txtStatus.Location = new Point(113, 113);
             txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
             txtStatus.ScrollBars = ScrollBars.Vertical;
@@ -156,10 +162,10 @@
             // lblInput
             // 
             lblInput.AutoSize = true;
-            lblInput.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblInput.Location = new Point(0, 295);
+            lblInput.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            lblInput.Location = new Point(0, 283);
             lblInput.Name = "lblInput";
-            lblInput.Size = new Size(282, 25);
+            lblInput.Size = new Size(398, 37);
             lblInput.TabIndex = 15;
             lblInput.Text = "Input  values (comma delimited)";
             // 
@@ -203,7 +209,6 @@
             // 
             CommandNumberColumn.HeaderText = "Command Number";
             CommandNumberColumn.Name = "CommandNumberColumn";
-            CommandNumberColumn.ReadOnly = true;
             // 
             // CommandColumn
             // 
@@ -212,7 +217,7 @@
             // 
             // btnStartSimulation
             // 
-            btnStartSimulation.Location = new Point(348, 320);
+            btnStartSimulation.Location = new Point(390, 186);
             btnStartSimulation.Name = "btnStartSimulation";
             btnStartSimulation.Size = new Size(107, 54);
             btnStartSimulation.TabIndex = 18;
@@ -220,12 +225,78 @@
             btnStartSimulation.UseVisualStyleBackColor = true;
             btnStartSimulation.Click += btnStartSimulation_Click;
             // 
+            // btnCut
+            // 
+            btnCut.Location = new Point(584, 327);
+            btnCut.Name = "btnCut";
+            btnCut.Size = new Size(75, 23);
+            btnCut.TabIndex = 19;
+            btnCut.Text = "Cut";
+            btnCut.UseVisualStyleBackColor = true;
+            btnCut.Click += btnCut_Click;
+            // 
+            // btnCopy
+            // 
+            btnCopy.Location = new Point(698, 327);
+            btnCopy.Name = "btnCopy";
+            btnCopy.Size = new Size(75, 23);
+            btnCopy.TabIndex = 20;
+            btnCopy.Text = "Copy";
+            btnCopy.UseVisualStyleBackColor = true;
+            btnCopy.Click += btnCopy_Click;
+            // 
+            // btnPaste
+            // 
+            btnPaste.Location = new Point(804, 327);
+            btnPaste.Name = "btnPaste";
+            btnPaste.Size = new Size(75, 23);
+            btnPaste.TabIndex = 21;
+            btnPaste.Text = "Paste";
+            btnPaste.UseVisualStyleBackColor = true;
+            btnPaste.Click += btnPaste_Click;
+            // 
+            // btnAddRow
+            // 
+            btnAddRow.Location = new Point(619, 366);
+            btnAddRow.Name = "btnAddRow";
+            btnAddRow.Size = new Size(100, 28);
+            btnAddRow.TabIndex = 22;
+            btnAddRow.Text = "Add Row";
+            btnAddRow.UseVisualStyleBackColor = true;
+            btnAddRow.Click += btnAddRow_Click;
+            // 
+            // btnDeleteRow
+            // 
+            btnDeleteRow.Location = new Point(749, 366);
+            btnDeleteRow.Name = "btnDeleteRow";
+            btnDeleteRow.Size = new Size(100, 28);
+            btnDeleteRow.TabIndex = 23;
+            btnDeleteRow.Text = "Delete Row";
+            btnDeleteRow.UseVisualStyleBackColor = true;
+            btnDeleteRow.Click += btnDeleteRow_Click;
+            // 
+            // btnSaveChanges
+            // 
+            btnSaveChanges.Location = new Point(676, 415);
+            btnSaveChanges.Name = "btnSaveChanges";
+            btnSaveChanges.Size = new Size(101, 28);
+            btnSaveChanges.TabIndex = 24;
+            btnSaveChanges.Text = "Save Changes";
+            btnSaveChanges.UseVisualStyleBackColor = true;
+            btnSaveChanges.Click += btnSaveChanges_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(931, 730);
+            Controls.Add(btnSaveChanges);
+            Controls.Add(btnDeleteRow);
+            Controls.Add(btnAddRow);
+            Controls.Add(btnPaste);
+            Controls.Add(btnCopy);
+            Controls.Add(btnCut);
             Controls.Add(btnStartSimulation);
             Controls.Add(dataGridView);
             Controls.Add(lblInput);
@@ -268,8 +339,14 @@
         private ToolStripMenuItem colorSettingsToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem1;
         private DataGridView dataGridView;
+        private Button btnStartSimulation;
+        private Button btnCut;
+        private Button btnCopy;
+        private Button btnPaste;
+        private Button btnAddRow;
+        private Button btnDeleteRow;
         private DataGridViewTextBoxColumn CommandNumberColumn;
         private DataGridViewTextBoxColumn CommandColumn;
-        private Button btnStartSimulation;
+        private Button btnSaveChanges;
     }
 }
