@@ -21,6 +21,7 @@ namespace UVSimGUI
         {
             processInstructions = new Instructions();
             InitializeComponent();
+            InitializeDataGridView();
             txtStatus.Visible = false;
             txtInput.Visible = false;
             btnCompute.Visible = false;
@@ -48,7 +49,7 @@ namespace UVSimGUI
             btnExit.ForeColor = offColor;
             btnCompute.ForeColor = offColor;
             btnOpenFile.ForeColor = offColor;
-            txtStatus.ForeColor = offColor; 
+            txtStatus.ForeColor = offColor;
             lblInput.ForeColor = offColor;
             txtInput.ForeColor = offColor;
 
@@ -63,6 +64,32 @@ namespace UVSimGUI
             settingsForm.Owner = this; // Set MainForm as the owner
             settingsForm.ShowDialog();
         }
+        private void InitializeDataGridView()
+        {
+            // Adding columns to dataGridView
+            dataGridView.Columns.Add("Line", "Line Number");
+            dataGridView.Columns.Add("Instruction", "Instruction");
+
+            // Example column setup - modify as needed
+            dataGridView.Columns["Line"].Width = 50;
+            dataGridView.Columns["Instruction"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Other DataGridView settings
+            dataGridView.AllowUserToAddRows = true;
+            dataGridView.AllowUserToDeleteRows = true;
+            dataGridView.ReadOnly = false; // Set to true if you don't want users to edit directly
+
+            for (int i = 0; i < 99; i++)
+            {
+                dataGridView.Rows.Add();
+            }
+
+            // Optionally, you can set the first column to show line numbers (00 to 98)
+            for (int i = 0; i < 99; i++)
+            {
+                dataGridView.Rows[i].Cells["Line"].Value = i.ToString("D2"); // Format as 2 digits
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Text files (*.txt)|*.txt";
@@ -70,18 +97,31 @@ namespace UVSimGUI
             {
                 filePath = openFileDialog1.FileName;
                 fileInstructions = new FileReader(filePath);
-                if (fileInstructions.GetInstructions().Count <= 0)
+
+                if (fileInstructions.GetInstructions().Count > 0)
                 {
-                    //problem select a different file
-                    Application.Exit();
-
+                    LoadDataIntoDataGridView(fileInstructions.GetInstructions());
+                    // Hide the controls for execution initially
+                    txtStatus.Visible = false;
+                    txtInput.Visible = false;
+                    btnCompute.Visible = false;
+                    // Show the DataGridView with the file content
+                    dataGridView.Visible = true;
                 }
-                // File selected, now start the timer and show the loading button
-                lblLoading.Visible = true;
-                loadingTimer.Start();
-
-                // Disable button1 to prevent further interaction while loading
-                btnOpenFile.Enabled = false;
+                else
+                {
+                    MessageBox.Show("File is empty or cannot be processed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void LoadDataIntoDataGridView(List<string> instructions)
+        {
+            dataGridView.Rows.Clear();
+            foreach (string instruction in instructions)
+            {
+                // Assuming each instruction is a single string, you might want to split or process it
+                // For simple display: Add the entire instruction string as a row
+                dataGridView.Rows.Add(new object[] { instruction });
             }
         }
         private void LoadingTimer_Tick(object sender, EventArgs e)
@@ -153,6 +193,11 @@ namespace UVSimGUI
         private void txtStatus_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnStartSimulation_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

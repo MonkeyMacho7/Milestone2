@@ -44,7 +44,12 @@
             menuStrip1 = new MenuStrip();
             colorSettingsToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
+            dataGridView = new DataGridView();
+            CommandNumberColumn = new DataGridViewTextBoxColumn();
+            CommandColumn = new DataGridViewTextBoxColumn();
+            btnStartSimulation = new Button();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // btnOpenFile
@@ -76,9 +81,9 @@
             // btnExit
             // 
             btnExit.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnExit.Location = new Point(-3, 410);
+            btnExit.Location = new Point(12, 494);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(743, 66);
+            btnExit.Size = new Size(907, 66);
             btnExit.TabIndex = 2;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
@@ -102,7 +107,7 @@
             // txtInput
             // 
             txtInput.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtInput.Location = new Point(359, 289);
+            txtInput.Location = new Point(288, 286);
             txtInput.Name = "txtInput";
             txtInput.Size = new Size(167, 34);
             txtInput.TabIndex = 6;
@@ -132,7 +137,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(547, 479);
+            label1.Location = new Point(292, 614);
             label1.Name = "label1";
             label1.Size = new Size(205, 15);
             label1.TabIndex = 13;
@@ -144,7 +149,7 @@
             txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
             txtStatus.ScrollBars = ScrollBars.Vertical;
-            txtStatus.Size = new Size(671, 170);
+            txtStatus.Size = new Size(359, 170);
             txtStatus.TabIndex = 14;
             txtStatus.TextChanged += txtStatus_TextChanged;
             // 
@@ -152,7 +157,7 @@
             // 
             lblInput.AutoSize = true;
             lblInput.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lblInput.Location = new Point(76, 295);
+            lblInput.Location = new Point(0, 295);
             lblInput.Name = "lblInput";
             lblInput.Size = new Size(282, 25);
             lblInput.TabIndex = 15;
@@ -163,7 +168,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { colorSettingsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(752, 24);
+            menuStrip1.Size = new Size(931, 24);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "menuStrip1";
             menuStrip1.ItemClicked += menuStrip1_ItemClicked;
@@ -183,12 +188,46 @@
             toolStripMenuItem1.Text = "Color Theme";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
+            // dataGridView
+            // 
+            dataGridView.AllowUserToOrderColumns = true;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { CommandNumberColumn, CommandColumn });
+            dataGridView.Location = new Point(574, 113);
+            dataGridView.Name = "dataGridView";
+            dataGridView.RowTemplate.Height = 25;
+            dataGridView.Size = new Size(305, 207);
+            dataGridView.TabIndex = 17;
+            // 
+            // CommandNumberColumn
+            // 
+            CommandNumberColumn.HeaderText = "Command Number";
+            CommandNumberColumn.Name = "CommandNumberColumn";
+            CommandNumberColumn.ReadOnly = true;
+            // 
+            // CommandColumn
+            // 
+            CommandColumn.HeaderText = "Command/Instruction";
+            CommandColumn.Name = "CommandColumn";
+            // 
+            // btnStartSimulation
+            // 
+            btnStartSimulation.Location = new Point(348, 320);
+            btnStartSimulation.Name = "btnStartSimulation";
+            btnStartSimulation.Size = new Size(107, 54);
+            btnStartSimulation.TabIndex = 18;
+            btnStartSimulation.Text = "Start UVSim";
+            btnStartSimulation.UseVisualStyleBackColor = true;
+            btnStartSimulation.Click += btnStartSimulation_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
-            ClientSize = new Size(752, 503);
+            ClientSize = new Size(931, 730);
+            Controls.Add(btnStartSimulation);
+            Controls.Add(dataGridView);
             Controls.Add(lblInput);
             Controls.Add(label1);
             Controls.Add(lblLoading);
@@ -206,6 +245,7 @@
             Text = "Wireframe";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -227,5 +267,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem colorSettingsToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem1;
+        private DataGridView dataGridView;
+        private DataGridViewTextBoxColumn CommandNumberColumn;
+        private DataGridViewTextBoxColumn CommandColumn;
+        private Button btnStartSimulation;
     }
 }
