@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static UVSimGUI.FileReader;
 
 
 namespace UVSimGUI
@@ -77,7 +78,7 @@ namespace UVSimGUI
             dataGridView.Columns.Add("Instruction", "Instruction");
 
             // Example column setup - modify as needed
-            dataGridView.Columns["Line"].Width = 50;
+            dataGridView.Columns["Line"].Width = 250;
             dataGridView.Columns["Instruction"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // Other DataGridView settings
@@ -85,13 +86,12 @@ namespace UVSimGUI
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.ReadOnly = false;
 
-            for (int i = 0; i < 99; i++)
+            for (int i = 0; i < 250; i++)
             {
                 dataGridView.Rows.Add();
             }
 
-            // Optionally, you can set the first column to show line numbers (00 to 98)
-            for (int i = 0; i < 99; i++)
+            for (int i = 0; i < 250; i++)
             {
                 dataGridView.Rows[i].Cells["Line"].Value = i.ToString("D2"); // Format as 2 digits
             }
@@ -127,6 +127,22 @@ namespace UVSimGUI
                 }
             }
         }
+       
+       
+        private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string headerText = dataGridView.Columns[e.ColumnIndex].HeaderText;
+
+            if (headerText.Equals("Op Code") || headerText.Equals("Operand"))
+            {
+                // Check if the input is exactly three digits
+                if (!int.TryParse(e.FormattedValue.ToString(), out int result) || e.FormattedValue.ToString().Length != 3)
+                {
+                    dataGridView.Rows[e.RowIndex].ErrorText = "Input must be a three-digit number";
+                    e.Cancel = true;
+                }
+            }
+        }
         private void LoadDataIntoDataGridView(List<string> instructions)
         {
             dataGridView.Rows.Clear();
@@ -135,8 +151,8 @@ namespace UVSimGUI
                 if (!string.IsNullOrWhiteSpace(instruction))
                 {
                     // Split the instruction 
-                    string operationCode = instruction.Substring(0, 2);
-                    string instructionDetails = instruction.Substring(2);
+                    string operationCode = instruction.Substring(0, 3);
+                    string instructionDetails = instruction.Substring(3);
 
                     // Add the operation 
                     dataGridView.Rows.Add(new object[] { operationCode, instructionDetails });
@@ -280,7 +296,7 @@ namespace UVSimGUI
 
         private void btnAddRow_Click(object sender, EventArgs e)
         {
-            if (dataGridView.Rows.Count < 100)
+            if (dataGridView.Rows.Count < 250)
             {
                 dataGridView.Rows.Insert(dataGridView.CurrentRow.Index, new DataGridViewRow());
 
@@ -320,5 +336,45 @@ namespace UVSimGUI
                 MessageBox.Show("File saved successfully.");
             }
         }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnConvertFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+
+                // Use FileConverter to convert the file
+                FileConverter converter = new FileConverter();
+                var convertedInstructions = converter.ConvertToSixDigitFormat(filePath);
+
+                // Optional: Save the converted instructions to a new file
+                SaveConvertedFile(convertedInstructions, filePath);
+            }
+        }
+        private void SaveConvertedFile(List<string> instructions, string originalFilePath)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(originalFilePath) + "_converted.txt";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllLines(saveFileDialog.FileName, instructions);
+            }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

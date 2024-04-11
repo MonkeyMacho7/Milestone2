@@ -54,6 +54,7 @@
             btnAddRow = new Button();
             btnDeleteRow = new Button();
             btnSaveChanges = new Button();
+            btnConvertFile = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -61,7 +62,7 @@
             // btnOpenFile
             // 
             btnOpenFile.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOpenFile.Location = new Point(584, 62);
+            btnOpenFile.Location = new Point(617, 62);
             btnOpenFile.Margin = new Padding(1);
             btnOpenFile.Name = "btnOpenFile";
             btnOpenFile.Size = new Size(232, 40);
@@ -204,6 +205,7 @@
             dataGridView.RowTemplate.Height = 25;
             dataGridView.Size = new Size(305, 207);
             dataGridView.TabIndex = 17;
+            dataGridView.CellContentClick += dataGridView_CellContentClick;
             // 
             // CommandNumberColumn
             // 
@@ -285,12 +287,23 @@
             btnSaveChanges.UseVisualStyleBackColor = true;
             btnSaveChanges.Click += btnSaveChanges_Click;
             // 
+            // btnConvertFile
+            // 
+            btnConvertFile.Location = new Point(574, 449);
+            btnConvertFile.Name = "btnConvertFile";
+            btnConvertFile.Size = new Size(334, 35);
+            btnConvertFile.TabIndex = 25;
+            btnConvertFile.Text = "Convert 4 digit file";
+            btnConvertFile.UseVisualStyleBackColor = true;
+            btnConvertFile.Click += btnConvertFile_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(931, 730);
+            Controls.Add(btnConvertFile);
             Controls.Add(btnSaveChanges);
             Controls.Add(btnDeleteRow);
             Controls.Add(btnAddRow);
@@ -348,5 +361,6 @@
         private DataGridViewTextBoxColumn CommandNumberColumn;
         private DataGridViewTextBoxColumn CommandColumn;
         private Button btnSaveChanges;
+        private Button btnConvertFile;
     }
 }

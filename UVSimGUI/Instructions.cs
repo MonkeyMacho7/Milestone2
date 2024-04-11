@@ -8,12 +8,12 @@ namespace UVSimGUI
 {
     public class Instructions
     {
-        public static string[] instructions = new string[100];
-        public static int[] inputs = new int[100];
+        public static string[] instructions = new string[250];
+        public static int[] inputs = new int[250];
         public static int pointer = 0;
-        public static int[] memory = new int[100];
+        public static int[] memory = new int[250];
         public static int accumulator = 0;
-        
+
         public Instructions() { }
         public Instructions(List<string> list, string txtInput)
         {
@@ -38,20 +38,38 @@ namespace UVSimGUI
             Array.Clear(memory, 0, memory.Length);
             Array.Clear(inputs, 0, inputs.Length);
         }
+
         public void LoadInsructions(List<string> list, string txtInput)
         {
-            var n = 0;
-            foreach (var i in list)
+            if (list.Count > 250)
             {
-                instructions[n] = i;
-                n++;
+                throw new Exception("Too many instructions. Maximum is 250.");
             }
-            n = 0;
-            var arrInputs = txtInput.Split(',');
-            while (n < arrInputs.Length)
+
+            // Load instructions into the instructions array
+            for (int i = 0; i < list.Count; i++)
             {
-                inputs[n] = Convert.ToInt32(arrInputs[n]);
-                n++;
+                // Ensure each instruction is exactly 6 digits long
+                if (list[i].Length != 6)
+                {
+                    throw new FormatException("Invalid instruction length. Each instruction must be 6 digits.");
+                }
+                instructions[i] = list[i];
+            }
+
+            // Reset the inputs array before loading new inputs
+            Array.Clear(inputs, 0, inputs.Length);
+
+            // Load inputs
+            var arrInputs = txtInput.Split(',');
+            if (arrInputs.Length > inputs.Length)
+            {
+                throw new Exception("Too many inputs. Maximum is 250.");
+            }
+
+            for (int i = 0; i < arrInputs.Length; i++)
+            {
+                inputs[i] = Convert.ToInt32(arrInputs[i]);
             }
         }
         public string Process()
@@ -64,9 +82,9 @@ namespace UVSimGUI
                 foreach (var i in instructions)
                 {
                     //get the operation
-                    var operation = (int)Convert.ToInt32(instructions[current].Substring(0, 2));
+                    var operation = (int)Convert.ToInt32(instructions[current].Substring(0, 3));
                     //get the operand
-                    var operand = (int)Convert.ToInt32(instructions[current].Substring(2, 2));
+                    var operand = (int)Convert.ToInt32(instructions[current].Substring(3, 3));
 
                     //call the BasicML processor
                     status += BasicML(current, operation, operand, out next);
@@ -88,35 +106,35 @@ namespace UVSimGUI
             }
             switch (operation)
             {
-                case 10:
+                case 010:
                     int value = inputs[pointer++];
                     status += $"Getting a value to store in memory: {value}{Environment.NewLine}";
                     Console.Write($"Getting a value to store in memory: {value}");
                     memory[operand] = value; // Storing the user input in the specified memory location
                     break;
 
-                case 11:
+                case 011:
                     status += $"Value at memory location {operand}: {memory[operand]}{Environment.NewLine}";
                     Console.WriteLine($"Value at memory location {operand}: {memory[operand]}");
                     break;
 
-                case 20:
+                case 020:
                     accumulator = memory[operand];
                     break;
 
-                case 21:
+                case 021:
                     memory[operand] = accumulator;
                     break;
 
-                case 30:
+                case 030:
                     accumulator += memory[operand];
                     break;
 
-                case 31:
+                case 031:
                     accumulator -= memory[operand];
                     break;
 
-                case 32:
+                case 032:
                     if (memory[operand] == 0)
                     {
                         status += $"Divide by zero error.{Environment.NewLine}";
@@ -130,17 +148,17 @@ namespace UVSimGUI
                     }
                     break;
 
-                case 33: 
+                case 033: 
                     accumulator *= memory[operand];
                     break;
 
-                case 40:
+                case 040:
                     status += $"Branching to line {operand}.{Environment.NewLine}";
                     Console.WriteLine($"Branching to line {operand}.");
                     next = operand;
                     return status;
 
-                case 41:
+                case 041:
                     if (accumulator < 0)
                     {
                         status += $"Branching to instruction {operand} due to negative accumulator.{Environment.NewLine}";
@@ -150,7 +168,7 @@ namespace UVSimGUI
                     }
                     break;
 
-                case 42:
+                case 042:
                     if (accumulator == 0)
                     {
                         status += $"Branching to instruction {operand} due to zero accumulator.{Environment.NewLine}";
@@ -160,7 +178,7 @@ namespace UVSimGUI
                     }
                     break;
 
-                case 43:
+                case 043:
                     status += $"Halt operation{Environment.NewLine}";
                     Console.WriteLine("Halt operation");
                     next = 0;
