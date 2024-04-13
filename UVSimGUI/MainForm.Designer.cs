@@ -135,7 +135,7 @@
             // 
             lblLoading.AutoSize = true;
             lblLoading.Font = new Font("Segoe UI", 40F, FontStyle.Regular, GraphicsUnit.Point);
-            lblLoading.Location = new Point(239, 168);
+            lblLoading.Location = new Point(367, 649);
             lblLoading.Name = "lblLoading";
             lblLoading.Size = new Size(258, 72);
             lblLoading.TabIndex = 11;

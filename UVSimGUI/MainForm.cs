@@ -22,6 +22,7 @@ namespace UVSimGUI
         {
             processInstructions = new Instructions();
             InitializeComponent();
+            this.IsMdiContainer = true;
             InitializeDataGridView();
             txtStatus.Visible = false;
             txtInput.Visible = false;
