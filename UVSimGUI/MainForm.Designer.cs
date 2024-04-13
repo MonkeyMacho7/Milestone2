@@ -308,7 +308,7 @@
             tabControl1.Location = new Point(574, 113);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(305, 26);
+            tabControl1.Size = new Size(305, 45);
             tabControl1.TabIndex = 26;
             // 
             // tabPage1
@@ -318,7 +318,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(297, 0);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
+            tabPage1.Text = "Empty";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -326,10 +326,11 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(192, 72);
+            tabPage2.Size = new Size(297, 17);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Empty";
             tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Click += tabPage2_Click;
             // 
             // MainForm
             // 

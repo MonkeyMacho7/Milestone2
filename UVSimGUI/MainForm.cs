@@ -53,7 +53,7 @@ namespace UVSimGUI
             var offColor = Properties.Settings.Default.OffColor;
 
             this.BackColor = primaryColor;
-           
+
 
             btnExit.ForeColor = offColor;
             btnCompute.ForeColor = offColor;
@@ -61,7 +61,7 @@ namespace UVSimGUI
             txtStatus.ForeColor = offColor;
             lblInput.ForeColor = offColor;
             txtInput.ForeColor = offColor;
-            
+
 
             menuStrip1.ForeColor = offColor;
         }
@@ -114,7 +114,9 @@ namespace UVSimGUI
                     btnCompute.Visible = false;
                     lblInput.Visible = false;
                     // Show the DataGridView with the file content
+                    var shortName = System.IO.Path.GetFileName(filePath);
                     dataGridView.Visible = true;
+                    tabControl1.TabPages[0].Text = shortName;
                     tabControl1.Visible = true;
                     btnStartSimulation.Visible = true;
                     btnCut.Visible = true;
@@ -130,8 +132,16 @@ namespace UVSimGUI
                 }
             }
         }
-       
-       
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+            dataGridView.Visible = true;
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            dataGridView.Visible = false;
+        }
+
         private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             string headerText = dataGridView.Columns[e.ColumnIndex].HeaderText;
@@ -375,10 +385,6 @@ namespace UVSimGUI
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
     }
 }
