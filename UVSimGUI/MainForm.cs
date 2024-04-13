@@ -22,9 +22,9 @@ namespace UVSimGUI
         {
             processInstructions = new Instructions();
             InitializeComponent();
-            this.IsMdiContainer = true;
             InitializeDataGridView();
             txtStatus.Visible = false;
+            tabControl1.Visible = false;
             txtInput.Visible = false;
             btnCompute.Visible = false;
             lblInput.Visible = false;
@@ -53,6 +53,7 @@ namespace UVSimGUI
             var offColor = Properties.Settings.Default.OffColor;
 
             this.BackColor = primaryColor;
+           
 
             btnExit.ForeColor = offColor;
             btnCompute.ForeColor = offColor;
@@ -60,7 +61,7 @@ namespace UVSimGUI
             txtStatus.ForeColor = offColor;
             lblInput.ForeColor = offColor;
             txtInput.ForeColor = offColor;
-
+            
 
             menuStrip1.ForeColor = offColor;
         }
@@ -114,6 +115,7 @@ namespace UVSimGUI
                     lblInput.Visible = false;
                     // Show the DataGridView with the file content
                     dataGridView.Visible = true;
+                    tabControl1.Visible = true;
                     btnStartSimulation.Visible = true;
                     btnCut.Visible = true;
                     btnCopy.Visible = true;
@@ -245,6 +247,7 @@ namespace UVSimGUI
 
             // Hide the DataGridView
             btnSaveChanges.Visible = false;
+            tabControl1.Visible = false;
             btnCut.Visible = false;
             btnCopy.Visible = false;
             btnPaste.Visible = false;

@@ -126,5 +126,6 @@
         private ColorDialog colorDialogOff;
         private Label lblPrimaryColor;
         private Label lblOffColor;
+        private Label tabControl1;
     }
 }

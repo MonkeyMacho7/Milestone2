@@ -55,8 +55,12 @@
             btnDeleteRow = new Button();
             btnSaveChanges = new Button();
             btnConvertFile = new Button();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
             // btnOpenFile
@@ -200,10 +204,10 @@
             dataGridView.AllowUserToOrderColumns = true;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { CommandNumberColumn, CommandColumn });
-            dataGridView.Location = new Point(574, 113);
+            dataGridView.Location = new Point(574, 136);
             dataGridView.Name = "dataGridView";
             dataGridView.RowTemplate.Height = 25;
-            dataGridView.Size = new Size(305, 207);
+            dataGridView.Size = new Size(305, 186);
             dataGridView.TabIndex = 17;
             dataGridView.CellContentClick += dataGridView_CellContentClick;
             // 
@@ -297,12 +301,43 @@
             btnConvertFile.UseVisualStyleBackColor = true;
             btnConvertFile.Click += btnConvertFile_Click;
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new Point(574, 113);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(305, 26);
+            tabControl1.TabIndex = 26;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(297, 0);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(192, 72);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(931, 730);
+            Controls.Add(tabControl1);
             Controls.Add(btnConvertFile);
             Controls.Add(btnSaveChanges);
             Controls.Add(btnDeleteRow);
@@ -330,6 +365,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -362,5 +398,8 @@
         private DataGridViewTextBoxColumn CommandColumn;
         private Button btnSaveChanges;
         private Button btnConvertFile;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
     }
 }
